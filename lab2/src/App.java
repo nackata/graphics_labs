@@ -80,7 +80,8 @@ public class App extends JPanel implements ActionListener {
 
     private void drawPrimitive(Graphics2D g) {
         g.setColor(Color.WHITE);
-        g.fillOval(200, 300, 200, 100);
+        g.fillOval(250, 100, 200, 100);
+        g.fillOval(300, 50, 100, 200);
     }
 
     private void drawComplex(Graphics2D g) {
@@ -90,11 +91,13 @@ public class App extends JPanel implements ActionListener {
         int[][] points = { { 0, 60 }, { 20, 30 }, { 40, 60 }, { 30, 60 }, { 30, 80 }, { 10, 80 }, { 10, 60 },
                 { 0, 60 } };
 
+        int[] offset = {113, -150};
+
         GeneralPath house = new GeneralPath();
-        house.moveTo(points[0][0] + 100, points[0][1] + 10);
+        house.moveTo(points[0][0] + offset[0], points[0][1] + offset[1]);
 
         for (int i = 1; i < points.length; i++) {
-            house.lineTo(points[i][0] + 100, points[i][1] + 10);
+            house.lineTo(points[i][0] + offset[0], points[i][1] + offset[1]);
         }
 
         house.closePath();
@@ -103,11 +106,12 @@ public class App extends JPanel implements ActionListener {
     }
 
     private void drawAnimation(Graphics2D g) {
-        int offsetX = 400;
+        int offsetX = 0;
         int offsetY = 400;
         g.setColor(Color.WHITE);
+        g.drawRect(offsetX, offsetY, maxWidth - offsetX - 1, maxHeight - offsetY - 1);
         g.translate(offsetX, offsetY);
-        g.drawRect(0, 0, maxWidth - offsetX - 1, maxHeight - offsetY - 1);
+
 
         g.rotate(angle, (maxWidth - offsetX - 1) / 2, (maxHeight - offsetY - 1) / 2);
         drawPicture(g, alpha);
@@ -126,7 +130,7 @@ public class App extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        angle += 0.01;
+        angle += 0.02;
         if (alpha >= 255) {
             alphaInc = false;
         } else if (alpha <= 0) {
@@ -144,7 +148,7 @@ public class App extends JPanel implements ActionListener {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Lab 2 by Matyukha Nikita kp-72");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 1000);
+        frame.setSize(500, 1000);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
