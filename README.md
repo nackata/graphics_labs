@@ -1,1 +1,1 @@
-# graphics_labs
+# graphics_labs Matykha Nikita Kp-72
