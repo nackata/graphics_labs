@@ -24,3 +24,5 @@ hs_err_pid*
 
 javafx-sdk-11.0.2
 .idea
+jogamp-all-platforms
+jogamp-java3d
