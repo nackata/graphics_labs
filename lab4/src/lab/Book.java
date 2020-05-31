@@ -2,23 +2,18 @@ package lab;
 
 
 import com.sun.j3d.utils.universe.SimpleUniverse;
-import com.sun.j3d.utils.geometry.Box;
 
 import javax.media.j3d.*;
 import javax.swing.*;
-import javax.vecmath.Color3f;
-import javax.vecmath.Point3d;
-import javax.vecmath.Vector3d;
-import javax.vecmath.Vector3f;
+import javax.vecmath.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class Book implements ActionListener {
-    private final float higherEyeLimit = 15.0f;
+    private final float higherEyeLimit = 4.0f;
     private final float lowerEyeLimit = 5.0f;
-    private final float furthestEyeLimit = 28.0f;
+    private final float furthestEyeLimit = 18.0f;
     private final float closestEyeLimit = 25.0f;
 
     private TransformGroup treeTransformGroup;
@@ -148,8 +143,8 @@ public class Book implements ActionListener {
     private TransformGroup buildTG(Vector3f translation, Transform3D rotation) {
         Transform3D transform = new Transform3D();
         TransformGroup transformG = new TransformGroup();
-        transform.setTranslation(translation);
         transform.mul(rotation, transform);
+        transform.setTranslation(translation);
         transformG.setTransform(transform);
         return transformG;
     }
@@ -165,47 +160,49 @@ public class Book implements ActionListener {
     }
 
     private void buildStripe(TransformGroup pagesTG) {
-        Box stripe = new Box(1f, 0.2f, 8.5f, getStripeMaterials());
+        com.sun.j3d.utils.geometry.Box stripe = new com.sun.j3d.utils.geometry.Box(1f, 0.2f, 8.5f, getStripeMaterials());
+
         TransformGroup stripeTG = buildTG(new Vector3f(3, 0, -3));
         stripeTG.addChild(stripe);
         pagesTG.addChild(stripeTG);
     }
 
     private void buildWritings(TransformGroup pagesTG) {
-        Box writing1 = new Box(4f, 2f, 1f, getWritingMaterials());
+        com.sun.j3d.utils.geometry.Box writing1 = new com.sun.j3d.utils.geometry.Box(4f, 2f, 1f, getWritingMaterials());
         TransformGroup writing1TG = buildTG(new Vector3f(0, 0.4f, 3));
         writing1TG.addChild(writing1);
         pagesTG.addChild(writing1TG);
 
-        Box writing2 = new Box(4f, 1f, 4f, getWritingMaterials());
+        com.sun.j3d.utils.geometry.Box writing2 = new com.sun.j3d.utils.geometry.Box(4f, 1f, 4f, getWritingMaterials());
         TransformGroup writing2TG = buildTG(new Vector3f(2.55f, 0, 0));
         writing2TG.addChild(writing2);
         pagesTG.addChild(writing2TG);
     }
 
     private void buildCover3(TransformGroup pagesTG) {
-        Box cover3 = new Box(0.5f, 2.4f, 8.5f, getCoverMaterials());
+        com.sun.j3d.utils.geometry.Box cover3 = new com.sun.j3d.utils.geometry.Box(0.5f, 2.4f, 8.5f, getCoverMaterials());
         TransformGroup cover3TG = buildTG(new Vector3f(6, 0, 0));
         cover3TG.addChild(cover3);
         pagesTG.addChild(cover3TG);
     }
 
     private void buildCover2(TransformGroup pagesTG) {
-        Box cover2 = new Box(6.5f, 0.2f, 8.5f, getCoverMaterials());
-        TransformGroup cover2TG = buildTG(new Vector3f(0, -2, 0));
+        com.sun.j3d.utils.geometry.Box cover2 = new com.sun.j3d.utils.geometry.Box(6.5f, 0.2f, 8.5f, getCoverMaterials());
+        TransformGroup cover2TG = buildTG(new Vector3f(0, -5.5f, 0), new Transform3D(new Quat4d(0, 0, 1, -0.3), new Vector3d(1, 1,1 ), 1));
         cover2TG.addChild(cover2);
         pagesTG.addChild(cover2TG);
     }
 
     private void buildCover(TransformGroup pagesTG) {
-        Box cover = new Box(6.5f, 0.2f, 8.5f, getCoverMaterials());
+        com.sun.j3d.utils.geometry.Box cover = new com.sun.j3d.utils.geometry.Box(6.5f, 0.2f, 8.5f, getCoverMaterials());
         TransformGroup coverTG = buildTG(new Vector3f(0, 2, 0));
+
         coverTG.addChild(cover);
         pagesTG.addChild(coverTG);
     }
 
     private TransformGroup buildPages() {
-        Box pages = new Box(6, 2, 8, getPagesMaterials());
+        com.sun.j3d.utils.geometry.Box pages = new com.sun.j3d.utils.geometry.Box(6, 2, 8, getPagesMaterials());
         TransformGroup pagesTG = buildTG();
         pagesTG.addChild(pages);
         return pagesTG;

@@ -8,11 +8,10 @@
     <content url="file://$MODULE_DIR$/../vecmath-master/src/javax/vecmath">
       <sourceFolder url="file://$MODULE_DIR$/../vecmath-master/src/javax/vecmath" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="11.0.1" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jogamp-fat" level="project" />
-    <orderEntry type="library" name="jogamp-java3d" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="ext" level="project" />
+    <orderEntry type="library" name="jogamp-java3d1" level="project" />
+    <orderEntry type="library" name="jogamp-all-platforms" level="project" />
+    <orderEntry type="library" name="jar" level="project" />
   </component>
 </module>
